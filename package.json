@@ -1,0 +1,9 @@
+{
+  "name": "neon-tetris",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "NEON TETRIS — classic game, modern experience",
+  "engines": { "node": ">=24" },
+  "scripts": { "build": "node scripts/build-player.mjs", "dev": "node scripts/serve.mjs", "test": "node --test" }
+}

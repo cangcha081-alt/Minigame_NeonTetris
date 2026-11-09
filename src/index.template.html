@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101416">
+  <title>NEON TETRIS · Night Shift Arcade</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles/tokens.css">
+  <link rel="stylesheet" href="./styles/layout.css">
+  <link rel="stylesheet" href="./styles/theme.css">
+  <!-- PLAYER_SCRIPT -->
+</head>
+<body data-phase="READY" data-effects="standard">
+  <main class="arcade" aria-label="NEON TETRIS 夜班街机">
+    <header class="nameplate">
+      <div class="identity">
+        <svg class="maker-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 39V7h8l20 20V7h10v32h-8L15 19v20Z"/><path class="mark-cut" d="M3 24h42"/></svg>
+        <div><p class="edition">NIGHT SHIFT ARCADE</p><h1 aria-label="NEON TETRIS">NEON<span>TETRIS</span></h1></div>
+      </div>
+      <div class="plate-caption"><p>METROPOLITAN<br>ANALOG FUTURISM</p><span class="machine-state"><i aria-hidden="true"></i><span id="phase-label">等待开始</span></span></div>
+      <div class="service-actions"><button id="help-button" type="button">操作说明</button><button id="settings-button" type="button">设置</button></div>
+    </header>
+    <div class="console-body">
+      <aside class="left-rail" aria-label="独立电子仪表">
+        <section class="meter-bank" aria-label="游戏统计">
+          <div class="meter score-meter"><h2>SCORE <span>得分</span></h2><div class="readout"><b id="score">000000</b></div></div>
+          <div class="meter level-meter"><h2>LEVEL <span>等级</span></h2><div class="readout"><b id="level">01</b></div></div>
+          <div class="meter lines-meter"><h2>LINES <span>行数</span></h2><div class="readout"><b id="lines">000</b></div></div>
+          <div id="level-notice" class="level-notice" role="status" hidden><span id="level-notice-label">等级提升</span><b id="level-notice-value">02</b></div>
+        </section>
+        <div class="record-meter"><span>HIGH SCORE · 历史最高</span><b id="best">000000</b></div>
+      </aside>
+      <section class="play-section" aria-label="主游戏显示器">
+        <div class="screen-bezel" id="game-area" tabindex="0" aria-label="俄罗斯方块棋盘" aria-describedby="preview-note">
+          <div class="screen-label"><span>10 × 20</span><span>PLAYFIELD</span></div>
+          <div class="board-viewport">
+            <canvas id="board" width="280" height="560" aria-label="10列20行俄罗斯方块棋盘">需要支持 Canvas 才能显示棋盘。</canvas>
+            <div id="event-layer" class="event-layer" aria-hidden="true"></div>
+            <div class="board-message" id="board-overlay">
+              <span id="state-kicker" class="state-kicker">READY</span>
+              <h2 id="board-title">轮到你了。</h2>
+              <p id="board-description">让每一块，找到位置。</p>
+              <dl id="result-stats" class="result-stats" hidden><div><dt>本局得分</dt><dd id="result-score">0</dd></div><div><dt>行数 / 等级</dt><dd id="result-lines">0 / 1</dd></div></dl>
+              <span id="new-record" class="record-tag" hidden>新纪录</span>
+              <button id="overlay-action" class="primary" type="button" data-action="start">开始游戏</button>
+              <button id="return-title" class="text-button" type="button" hidden>返回标题</button>
+              <span id="state-footnote" class="state-footnote">A / D 移动 · Space 硬降</span>
+            </div>
+          </div>
+          <div class="glass-foot" aria-hidden="true"><span></span><b>N / T</b><span></span></div>
+        </div>
+      </section>
+      <aside class="right-rail" aria-label="下一方块与暂存显示窗">
+        <section class="aux-display next-panel"><header><h2>NEXT <span>下一块</span></h2></header><div class="preview-well"><canvas id="next-preview" width="160" height="96" aria-label="暂无下一方块"></canvas></div></section>
+        <section class="aux-display hold-panel"><header><h2>HOLD <span>暂存</span></h2><kbd>C / Shift</kbd></header><div class="preview-well"><canvas id="hold-preview" width="160" height="96" aria-label="暂无暂存方块"></canvas></div><p id="hold-note" class="panel-note">每轮可交换一次</p></section>
+      </aside>
+    </div>
+    <footer class="control-deck">
+        <details class="operator-label" open><summary>操作指引</summary><dl class="printed-keys"><div><dt><kbd>A</kbd><kbd>D</kbd></dt><dd>左右移动</dd></div><div><dt><kbd>W</kbd></dt><dd>软降落</dd></div><div><dt><kbd>Q</kbd><kbd>E</kbd></dt><dd>顺 / 逆旋转</dd></div><div><dt><kbd>Space</kbd></dt><dd>硬降落</dd></div><div><dt><kbd>C</kbd><kbd>Shift</kbd></dt><dd>暂存</dd></div><div><dt><kbd>P</kbd><kbd>Esc</kbd></dt><dd>暂停 / 继续</dd></div></dl></details>
+
+      <div class="deck-label"><span>控制台</span><p id="preview-note">A / D 移动，Q / E 旋转，W 软降，Space 硬降，C / Shift 暂存，P / Esc 暂停。</p></div>
+      <div class="deck-actions"><button id="start-button" type="button" class="start-key">开始</button><button id="pause-button" type="button" disabled>暂停</button><button id="restart-button" type="button" disabled>重新开始</button></div>
+
+      <p id="app-status" class="storage-status" role="status" aria-live="polite">正在读取偏好…</p>
+    </footer>
+    <noscript>请启用 JavaScript 以运行此页面。</noscript>
+  </main>
+  <dialog id="settings-dialog" aria-labelledby="settings-title"><form method="dialog">
+    <header class="service-header"><div><p class="service-label">SETTINGS / 声音与显示</p><h2 id="settings-title">设备维护菜单</h2></div><button class="close-button" value="close" aria-label="关闭设置" autofocus>关闭</button></header>
+    <p class="dialog-note">调整即时保存。关闭面板后，点击继续恢复游戏。</p>
+    <p id="audio-notice" class="dialog-note" role="status">原创电子音乐与操作音效，音量独立控制。</p><button id="audio-retry" type="button" hidden>启用声音</button>
+    <fieldset><legend>声音</legend><div class="audio-row"><label class="setting-row">背景音乐<input id="musicEnabled" type="checkbox" role="switch"></label><label class="range-label" for="musicVolume">音乐音量 <output id="musicVolume-output" for="musicVolume">35%</output></label><input id="musicVolume" type="range" min="0" max="100" step="1"></div><div class="audio-row"><label class="setting-row">游戏音效<input id="sfxEnabled" type="checkbox" role="switch"></label><label class="range-label" for="sfxVolume">音效音量 <output id="sfxVolume-output" for="sfxVolume">55%</output></label><input id="sfxVolume" type="range" min="0" max="100" step="1"></div></fieldset>
+    <fieldset><legend>显示</legend><label class="setting-row">动态效果<input id="effectsEnabled" type="checkbox" role="switch"></label><label class="setting-row">减少动态效果<input id="reduceMotion" type="checkbox" role="switch"></label><p id="motion-source" class="dialog-note"></p></fieldset><button class="primary dialog-done" value="close">返回控制台</button>
+  </form></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><form method="dialog"><header class="service-header"><div><p class="service-label">机身操作说明</p><h2 id="help-title">操作指引</h2></div><button class="close-button" value="close" aria-label="关闭操作说明" autofocus>关闭</button></header><p class="dialog-note">填满整行即可消除。累计消除 10 行，等级提升。</p><dl class="controls-list"><div><dt><kbd>A</kbd> <kbd>D</kbd></dt><dd>向左 / 向右移动</dd></div><div><dt><kbd>W</kbd></dt><dd>软降落 · 每格 1 分</dd></div><div><dt><kbd>Q</kbd> / <kbd>E</kbd></dt><dd>顺时针 / 逆时针旋转</dd></div><div><dt><kbd>Space</kbd></dt><dd>硬降落 · 每格 2 分</dd></div><div><dt><kbd>C</kbd> / <kbd>Shift</kbd></dt><dd>暂存 · 每轮一次</dd></div><div><dt><kbd>P</kbd> / <kbd>Esc</kbd></dt><dd>暂停 / 继续</dd></div></dl><p class="dialog-note">Shift 单独按下再释放触发暂存；组合键不触发。焦点离开棋盘会自动暂停，返回后请主动继续。</p><button class="primary dialog-done" value="close">明白了</button></form></dialog>
+  <dialog id="restart-dialog" aria-labelledby="restart-title"><form method="dialog"><p class="service-label">控制台 / 重置</p><h2 id="restart-title">重新开始？</h2><p class="dialog-note">当前这一局将结束。</p><div class="dialog-actions"><button value="cancel" autofocus>保留当前局</button><button class="primary" value="confirm">重新开始</button></div></form></dialog>
+</body>
+</html>

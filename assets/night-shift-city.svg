@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960">
+  <title>Night Shift City</title>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#111a2a"/>
+      <stop offset=".73" stop-color="#302638"/>
+      <stop offset="1" stop-color="#534148"/>
+    </linearGradient>
+    <radialGradient id="west">
+      <stop stop-color="#994663" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#994663" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="east">
+      <stop stop-color="#4c9295" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#4c9295" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="windows" width="38" height="43" patternUnits="userSpaceOnUse">
+      <path d="M4 6h17v4H4z M4 15h8v2H4z" fill="#9a9e9b" opacity=".27"/>
+    </pattern>
+    <linearGradient id="street" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#23343a"/>
+      <stop offset="1" stop-color="#101416"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1600v960H0z"/>
+  <ellipse cx="262" cy="450" rx="470" ry="430" fill="url(#west)"/>
+  <ellipse cx="1350" cy="465" rx="490" ry="400" fill="url(#east)"/>
+  <g fill="#202a37" stroke="#7a777e" stroke-opacity=".18" stroke-width="2">
+    <path d="M0 475h94V296h43v-33h9v33h74v103h45V247h31v-39h66v39h28v280h42V370h113v196h34V453h143v366H0z"/>
+    <path d="M920 819V420h91v-76h55v-48h12v48h49v182h42V351h90v36h43v-96h70v-44h13v44h40v217h48V402h127v417z"/>
+  </g>
+  <g fill="url(#windows)">
+    <path d="M103 314h105v209H103z M271 265h110v325H271z M445 388h88v229h-88z"/>
+    <path d="M1025 373h88v223h-88z M1180 378h69v268h-69z M1315 313h97v285h-97z M1506 429h94v214h-94z"/>
+  </g>
+  <path fill="#161d28" d="M0 267h65v54h64v164h58v144h143v47h159v177H0z M1600 293h-79v56h-65v159h-58v132h-135v42h-156v171h493z"/>
+  <g fill="none" stroke-width="2">
+    <path d="M9 274h51v52h63v152 M149 505h29v122h147 M308 623v-65h70" stroke="#b77187" opacity=".47"/>
+    <path d="M1592 302h-65v53h-64v146 M1433 527h-28v109h-134 M1290 624v-65h-76" stroke="#71b8ae" opacity=".52"/>
+    <path d="M0 657h309l112 49h758l110-49h311 M0 672h306l111 49h766l109-49h308" stroke="#b5a6a2" opacity=".17"/>
+  </g>
+  <g opacity=".47">
+    <path d="M29 387h8v149h-8z M49 387h3v117h-3z M215 646h51v3h-51z" fill="#cb798c"/>
+    <path d="M1551 416h7v145h-7z M1566 416h3v112h-3z M1326 657h58v3h-58z" fill="#8bd8cb"/>
+    <path d="M75 565h27v3H75z M75 578h44v2H75z M1472 586h48v3h-48z" fill="#e2b077"/>
+  </g>
+  <path fill="url(#street)" d="M0 771h1600v189H0z"/>
+  <path d="M0 795h1600 M0 863h1600 M219 960l360-188m802 188-360-188" stroke="#78918c" stroke-opacity=".19" stroke-width="2"/>
+  <path d="m16 912 271-89m-205 129 315-127m1187 87-271-89m205 129-315-127" fill="none" stroke="#9a7789" stroke-opacity=".15" stroke-width="5"/>
+</svg>
